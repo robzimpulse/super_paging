@@ -17,6 +17,7 @@ class FakePagingSource extends PagingSource<int, String> {
 
     return LoadResult.page(
       items: items,
+      currKey: currentPageKey,
       prevKey: currentPageKey == 1 ? null : currentPageKey - 1,
       nextKey: currentPageKey == totalPageCount ? null : currentPageKey + 1,
     );

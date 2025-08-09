@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:super_paging/super_paging.dart';
 
 import 'package:example/src/rick_and_morty_api.dart';

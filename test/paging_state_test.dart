@@ -6,9 +6,19 @@ void main() {
     test('PagingState.fromPages initializes correctly with non-empty pages',
         () {
       const pages = [
-        LoadResultPage(items: ['Item 1'], prevKey: null, nextKey: 2),
-        LoadResultPage(items: ['Item 2'], prevKey: 1, nextKey: 3),
-        LoadResultPage(items: ['Item 3'], prevKey: 2, nextKey: null),
+        LoadResultPage(
+          items: ['Item 1'],
+          prevKey: null,
+          currKey: 1,
+          nextKey: 2,
+        ),
+        LoadResultPage(items: ['Item 2'], prevKey: 1, currKey: 2, nextKey: 3),
+        LoadResultPage(
+          items: ['Item 3'],
+          prevKey: 2,
+          currKey: 3,
+          nextKey: null,
+        ),
       ];
 
       final pagingState = PagingState.fromPages(pages);
@@ -34,8 +44,8 @@ void main() {
   group('PagingListExtension', () {
     test('prevKey returns the correct value', () {
       const pages = [
-        LoadResultPage(items: ['Item 2'], prevKey: 1, nextKey: 3),
-        LoadResultPage(items: ['Item 3'], prevKey: 2, nextKey: 3),
+        LoadResultPage(items: ['Item 2'], prevKey: 1, currKey: 2, nextKey: 3),
+        LoadResultPage(items: ['Item 3'], prevKey: 2, currKey: 3, nextKey: null),
       ];
 
       final key = pages.prevKey;
@@ -45,8 +55,8 @@ void main() {
 
     test('nextKey returns the correct value', () {
       const pages = [
-        LoadResultPage(items: ['Item 1'], prevKey: null, nextKey: 2),
-        LoadResultPage(items: ['Item 2'], prevKey: 1, nextKey: 3),
+        LoadResultPage(items: ['Item 1'], prevKey: null, currKey: 1, nextKey: 2),
+        LoadResultPage(items: ['Item 2'], prevKey: 1, currKey: 2, nextKey: 3),
       ];
 
       final key = pages.nextKey;
@@ -56,8 +66,8 @@ void main() {
 
     test('items returns the correct list of items', () {
       const pages = [
-        LoadResultPage(items: ['Item 1', 'Item 2']),
-        LoadResultPage(items: ['Item 3']),
+        LoadResultPage(items: ['Item 1', 'Item 2'], currKey: 1),
+        LoadResultPage(items: ['Item 3'], currKey: 2),
       ];
 
       final item = pages.items;
@@ -67,8 +77,8 @@ void main() {
 
     test('itemCount returns the correct count of items', () {
       const pages = [
-        LoadResultPage(items: ['Item 1', 'Item 2']),
-        LoadResultPage(items: ['Item 3']),
+        LoadResultPage(items: ['Item 1', 'Item 2'], currKey: 1),
+        LoadResultPage(items: ['Item 3'], currKey: 2),
       ];
 
       final count = pages.itemCount;
@@ -86,8 +96,8 @@ void main() {
 
     test('isListEmpty returns true for pages with empty items', () {
       const pagesWithEmptyItems = [
-        LoadResultPage(items: []),
-        LoadResultPage(items: []),
+        LoadResultPage(items: [], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final isEmpty = pagesWithEmptyItems.isListEmpty;
@@ -97,8 +107,8 @@ void main() {
 
     test('isListEmpty returns false for pages with non-empty items', () {
       const pagesWithNonEmptyItems = [
-        LoadResultPage(items: ['Item 1']),
-        LoadResultPage(items: []),
+        LoadResultPage(items: ['Item 1'], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final isEmpty = pagesWithNonEmptyItems.isListEmpty;
@@ -116,8 +126,8 @@ void main() {
 
     test('isListNotEmpty returns false for pages with empty items', () {
       const pagesWithEmptyItems = [
-        LoadResultPage(items: []),
-        LoadResultPage(items: []),
+        LoadResultPage(items: [], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final isNotEmpty = pagesWithEmptyItems.isListNotEmpty;
@@ -127,8 +137,8 @@ void main() {
 
     test('isListNotEmpty returns true for pages with non-empty items', () {
       const pagesWithNonEmptyItems = [
-        LoadResultPage(items: ['Item 1']),
-        LoadResultPage(items: []),
+        LoadResultPage(items: ['Item 1'], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final isNotEmpty = pagesWithNonEmptyItems.isListNotEmpty;
@@ -138,8 +148,8 @@ void main() {
 
     test('firstItemOrNull returns the first item if available', () {
       const pagesWithItems = [
-        LoadResultPage(items: ['Item 1']),
-        LoadResultPage(items: ['Item 2']),
+        LoadResultPage(items: ['Item 1'], currKey: 1),
+        LoadResultPage(items: ['Item 2'], currKey: 2),
       ];
 
       final item = pagesWithItems.firstItemOrNull;
@@ -157,8 +167,8 @@ void main() {
 
     test('firstItemOrNull returns null for pages with empty items', () {
       const pagesWithEmptyItems = [
-        LoadResultPage(items: []),
-        LoadResultPage(items: []),
+        LoadResultPage(items: [], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final item = pagesWithEmptyItems.firstItemOrNull;
@@ -168,8 +178,8 @@ void main() {
 
     test('lastItemOrNull returns the last item if available', () {
       const pagesWithItems = [
-        LoadResultPage(items: ['Item 1']),
-        LoadResultPage(items: ['Item 2']),
+        LoadResultPage(items: ['Item 1'], currKey: 1),
+        LoadResultPage(items: ['Item 2'], currKey: 2),
       ];
 
       final item = pagesWithItems.lastItemOrNull;
@@ -187,8 +197,8 @@ void main() {
 
     test('lastItemOrNull returns null for pages with empty items', () {
       const pagesWithEmptyItems = [
-        LoadResultPage(items: []),
-        LoadResultPage(items: []),
+        LoadResultPage(items: [], currKey: 1),
+        LoadResultPage(items: [], currKey: 2),
       ];
 
       final item = pagesWithEmptyItems.lastItemOrNull;
