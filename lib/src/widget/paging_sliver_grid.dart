@@ -24,10 +24,39 @@ class PagingSliverGrid<Key, Value> extends StatelessWidget {
     this.addAutomaticKeepAlives = true,
     this.addRepaintBoundaries = true,
     this.addSemanticIndexes = true,
-  })  : separatorBuilder = null,
+  }) : assert(
+          pager.config.maxSize == null,
+          'PagingSliverGrid does not support maxSize',
+        );
+
+  PagingSliverGrid.count({
+    super.key,
+    required this.pager,
+    required this.itemBuilder,
+    required this.emptyBuilder,
+    required this.errorBuilder,
+    required this.loadingBuilder,
+    required int crossAxisCount,
+    double mainAxisSpacing = 0.0,
+    double crossAxisSpacing = 0.0,
+    double childAspectRatio = 1.0,
+    this.appendStateBuilder = defaultAppendStateBuilder,
+    this.prependStateBuilder = defaultPrependStateBuilder,
+    this.headerBuilder,
+    this.footerBuilder,
+    this.findChildIndexCallback,
+    this.addAutomaticKeepAlives = true,
+    this.addRepaintBoundaries = true,
+    this.addSemanticIndexes = true,
+  })  : gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          mainAxisSpacing: mainAxisSpacing,
+          crossAxisSpacing: crossAxisSpacing,
+          childAspectRatio: childAspectRatio,
+        ),
         assert(
           pager.config.maxSize == null,
-          'PagingSliverList does not support maxSize',
+          'PagingSliverGrid does not support maxSize',
         );
 
   /// The [PagedValueNotifier] used to control the list of items.
@@ -35,9 +64,6 @@ class PagingSliverGrid<Key, Value> extends StatelessWidget {
 
   /// A builder that is called to build items in the [ListView].
   final IndexedWidgetBuilder itemBuilder;
-
-  /// A builder that is called to build the list separator.
-  final IndexedWidgetBuilder? separatorBuilder;
 
   /// A builder that is called to build the empty state of the list.
   final PagingStateEmptyBuilder emptyBuilder;
@@ -172,31 +198,6 @@ class PagingSliverGrid<Key, Value> extends StatelessWidget {
     }
 
     final itemBuilder = this.itemBuilder;
-    final separatorBuilder = this.separatorBuilder;
-    if (separatorBuilder != null) {
-      return SliverChildBuilderDelegate(
-        (BuildContext context, int index) {
-          final itemIndex = index ~/ 2;
-          if (index.isEven) {
-            // Generate append notification.
-            generateAppendLoadTriggerNotification(itemIndex);
-
-            // Build items.
-            return itemBuilder(context, itemIndex);
-          }
-          // Build separators.
-          return separatorBuilder(context, itemIndex);
-        },
-        childCount: itemCount * 2 - 1,
-        findChildIndexCallback: findChildIndexCallback,
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-        addRepaintBoundaries: addRepaintBoundaries,
-        addSemanticIndexes: addSemanticIndexes,
-        semanticIndexCallback: (Widget widget, int index) {
-          return index.isEven ? index ~/ 2 : null;
-        },
-      );
-    }
 
     return SliverChildBuilderDelegate(
       (BuildContext context, int index) {
