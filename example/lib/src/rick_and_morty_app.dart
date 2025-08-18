@@ -42,6 +42,12 @@ class _RickAndMortyPageListState extends State<RickAndMortyPageList> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rick and Morty'),
+        actions: [
+          IconButton(
+            onPressed: () => rickAndMortyPager.refresh(),
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: PagingListView(
         pager: rickAndMortyPager,
@@ -99,6 +105,12 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Rick and Morty'),
+        actions: [
+          IconButton(
+            onPressed: () => rickAndMortyPager.refresh(),
+            icon: const Icon(Icons.refresh),
+          ),
+        ],
       ),
       body: PagingGridView.count(
         pager: rickAndMortyPager,
@@ -116,7 +128,18 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
           );
         },
         errorBuilder: (BuildContext context, Object? error) {
-          return Center(child: Text('$error'));
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('$error'),
+                OutlinedButton(
+                  onPressed: () => rickAndMortyPager.retry(),
+                  child: const Text('Retry'),
+                ),
+              ],
+            ),
+          );
         },
         loadingBuilder: (BuildContext context) {
           return const Center(
