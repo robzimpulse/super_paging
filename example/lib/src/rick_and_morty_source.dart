@@ -15,19 +15,25 @@ class RickAndMortySource extends PagingSource<int, RickAndMortyCharacter> {
     try {
       final page = params.key ?? 1;
       final data = await api.getCharacters(page: page);
+      final next = data.info.next;
+      final prev = data.info.prev;
 
       int? nextPage;
-      if (data.info.next != null) {
-        final uri = Uri.parse(data.info.next!);
+      if (next != null) {
+        final uri = Uri.parse(next);
         final nextPageQuery = uri.queryParameters['page'];
         if (nextPageQuery != null) nextPage = int.parse(nextPageQuery);
       }
 
       int? prevPage;
-      if (data.info.prev != null) {
-        final uri = Uri.parse(data.info.prev!);
+      if (prev != null) {
+        final uri = Uri.parse(prev);
         final prevPageQuery = uri.queryParameters['page'];
         if (prevPageQuery != null) prevPage = int.parse(prevPageQuery);
+      }
+
+      if (page == 3) {
+        throw Exception('Test Error');
       }
 
       return LoadResult.page(
