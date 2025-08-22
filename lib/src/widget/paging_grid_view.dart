@@ -113,6 +113,8 @@ class PagingGridView<Key, Value> extends BoxScrollView {
       addRepaintBoundaries: addRepaintBoundaries,
       addSemanticIndexes: addSemanticIndexes,
       gridDelegate: gridDelegate,
+      headerBuilder: headerBuilder,
+      footerBuilder: footerBuilder,
     );
   }
 }

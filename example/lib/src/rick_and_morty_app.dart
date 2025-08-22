@@ -116,17 +116,28 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: PagingGridView.count(
           pager: rickAndMortyPager,
+          headerBuilder: (context) => const SizedBox(height: 8),
+          footerBuilder: (context) => const SizedBox(height: 8),
           itemBuilder: (BuildContext context, int index) {
             final item = rickAndMortyPager.items.elementAt(index);
+            final page = rickAndMortyPager.page(index);
 
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(),
+                color: page != null
+                    ? page.isOdd
+                        ? Colors.grey
+                        : Colors.blueGrey
+                    : null,
               ),
               child: Column(
                 children: [
-                  Expanded(child: Center(child: CircleAvatar(backgroundImage: NetworkImage(item.image)))),
+                  Expanded(
+                      child: Center(
+                          child: CircleAvatar(
+                              backgroundImage: NetworkImage(item.image)))),
                   Text(
                     item.name,
                     style: Theme.of(context).textTheme.labelSmall,

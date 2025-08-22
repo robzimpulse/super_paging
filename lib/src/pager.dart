@@ -182,7 +182,7 @@ extension PagerExtension<Key, Value> on Pager<Key, Value> {
 
     var index = itemIndex;
     for (final page in pages) {
-      if (page.items.length <= index) {
+      if (index <= page.items.length) {
         return page.currKey;
       } else {
         index -= page.items.length;
