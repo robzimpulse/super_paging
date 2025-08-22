@@ -15,16 +15,17 @@ typedef PageListBuilder<K, V> = Widget Function(
   LoadState appendLoadState,
 );
 
-typedef PagingStateErrorBuilder = Widget Function(
+typedef PagingStateErrorBuilder<K> = Widget Function(
   BuildContext context,
+  K key,
   Object? error,
 );
 
-typedef LoadStateBuilder = Widget? Function(
+typedef LoadStateBuilder<K> = Widget? Function(
   BuildContext context,
-  LoadState state,
+  LoadState<K> state,
   void Function(LoadType loadType)? onLoadMoreTap,
-  VoidCallback? onRetryTap,
+  ValueSetter<K> onRetryTap,
 );
 
 typedef AppendStateBuilder = LoadStateBuilder;
@@ -34,11 +35,11 @@ typedef HeaderBuilder = WidgetBuilder;
 typedef FooterBuilder = WidgetBuilder;
 
 /// The default widget builder for the append state.
-Widget? defaultPrependStateBuilder(
+Widget? defaultPrependStateBuilder<K>(
   BuildContext context,
-  LoadState state,
+  LoadState<K> state,
   void Function(LoadType loadType)? onLoadMoreTap,
-  VoidCallback? onRetryTap,
+    ValueSetter<K?>? onRetryTap,
 ) {
   return _defaultLoadStateBuilder(
     context,
@@ -50,11 +51,11 @@ Widget? defaultPrependStateBuilder(
 }
 
 /// The default widget builder for the append state.
-Widget? defaultAppendStateBuilder(
+Widget? defaultAppendStateBuilder<K>(
   BuildContext context,
-  LoadState state,
+  LoadState<K> state,
   void Function(LoadType loadType)? onLoadMoreTap,
-  VoidCallback? onRetryTap,
+  ValueSetter<K?>? onRetryTap,
 ) {
   return _defaultLoadStateBuilder(
     context,
@@ -66,12 +67,12 @@ Widget? defaultAppendStateBuilder(
 }
 
 // The default widget builder for the append and prepend state.
-Widget? _defaultLoadStateBuilder(
+Widget? _defaultLoadStateBuilder<K>(
   BuildContext context,
   LoadType type,
-  LoadState state,
+  LoadState<K> state,
   void Function(LoadType loadType)? onLoadMoreTap,
-  VoidCallback? onRetryTap,
+  ValueSetter<K?>? onRetryTap,
 ) {
   return state.when(
     notLoading: (endOfPaginationReached) {
@@ -105,13 +106,13 @@ Widget? _defaultLoadStateBuilder(
         ),
       );
     },
-    error: (e) {
+    error: (key, e) {
       // Show a retry tile if there was an error loading data.
       return InkWell(
-        onTap: onRetryTap,
-        child: const ListTile(
-          title: Text('Error loading data!'),
-          trailing: Icon(Icons.refresh_rounded),
+        onTap: () => onRetryTap?.call(key),
+        child: ListTile(
+          title: Text('Error loading data for key $key'),
+          trailing: const Icon(Icons.refresh_rounded),
         ),
       );
     },

@@ -114,8 +114,8 @@ class PagingSliverList<Key, Value> extends StatelessWidget {
         final emptyWidget = emptyBuilder.call(context);
         return SliverFillRemaining(child: emptyWidget);
       },
-      errorBuilder: (context, error) {
-        final errorWidget = errorBuilder.call(context, error);
+      errorBuilder: (context, key, error) {
+        final errorWidget = errorBuilder.call(context, key, error);
         return SliverFillRemaining(child: errorWidget);
       },
       loadingBuilder: (context) {
@@ -140,7 +140,7 @@ class PagingSliverList<Key, Value> extends StatelessWidget {
               context,
               prependLoadState,
               pager.load,
-              pager.retry,
+              (key) => pager.refresh(refreshKey: key, resetPages: false),
             ),
           ),
 
@@ -171,7 +171,7 @@ class PagingSliverList<Key, Value> extends StatelessWidget {
               context,
               appendLoadState,
               pager.load,
-              pager.retry,
+              (key) => pager.refresh(refreshKey: key, resetPages: false),
             ),
           ),
         }.whereType(), // Remove nulls.

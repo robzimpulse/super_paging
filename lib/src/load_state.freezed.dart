@@ -15,62 +15,63 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LoadState {
+mixin _$LoadState<Key> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool endOfPaginationReached) notLoading,
     required TResult Function() loading,
-    required TResult Function(Object? error) error,
+    required TResult Function(Key? key, Object? error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool endOfPaginationReached)? notLoading,
     TResult? Function()? loading,
-    TResult? Function(Object? error)? error,
+    TResult? Function(Key? key, Object? error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool endOfPaginationReached)? notLoading,
     TResult Function()? loading,
-    TResult Function(Object? error)? error,
+    TResult Function(Key? key, Object? error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotLoading value) notLoading,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
+    required TResult Function(NotLoading<Key> value) notLoading,
+    required TResult Function(Loading<Key> value) loading,
+    required TResult Function(Error<Key> value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotLoading value)? notLoading,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Error value)? error,
+    TResult? Function(NotLoading<Key> value)? notLoading,
+    TResult? Function(Loading<Key> value)? loading,
+    TResult? Function(Error<Key> value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotLoading value)? notLoading,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
+    TResult Function(NotLoading<Key> value)? notLoading,
+    TResult Function(Loading<Key> value)? loading,
+    TResult Function(Error<Key> value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoadStateCopyWith<$Res> {
-  factory $LoadStateCopyWith(LoadState value, $Res Function(LoadState) then) =
-      _$LoadStateCopyWithImpl<$Res, LoadState>;
+abstract class $LoadStateCopyWith<Key, $Res> {
+  factory $LoadStateCopyWith(
+          LoadState<Key> value, $Res Function(LoadState<Key>) then) =
+      _$LoadStateCopyWithImpl<Key, $Res, LoadState<Key>>;
 }
 
 /// @nodoc
-class _$LoadStateCopyWithImpl<$Res, $Val extends LoadState>
-    implements $LoadStateCopyWith<$Res> {
+class _$LoadStateCopyWithImpl<Key, $Res, $Val extends LoadState<Key>>
+    implements $LoadStateCopyWith<Key, $Res> {
   _$LoadStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
@@ -83,20 +84,20 @@ class _$LoadStateCopyWithImpl<$Res, $Val extends LoadState>
 }
 
 /// @nodoc
-abstract class _$$NotLoadingImplCopyWith<$Res> {
-  factory _$$NotLoadingImplCopyWith(
-          _$NotLoadingImpl value, $Res Function(_$NotLoadingImpl) then) =
-      __$$NotLoadingImplCopyWithImpl<$Res>;
+abstract class _$$NotLoadingImplCopyWith<Key, $Res> {
+  factory _$$NotLoadingImplCopyWith(_$NotLoadingImpl<Key> value,
+          $Res Function(_$NotLoadingImpl<Key>) then) =
+      __$$NotLoadingImplCopyWithImpl<Key, $Res>;
   @useResult
   $Res call({bool endOfPaginationReached});
 }
 
 /// @nodoc
-class __$$NotLoadingImplCopyWithImpl<$Res>
-    extends _$LoadStateCopyWithImpl<$Res, _$NotLoadingImpl>
-    implements _$$NotLoadingImplCopyWith<$Res> {
+class __$$NotLoadingImplCopyWithImpl<Key, $Res>
+    extends _$LoadStateCopyWithImpl<Key, $Res, _$NotLoadingImpl<Key>>
+    implements _$$NotLoadingImplCopyWith<Key, $Res> {
   __$$NotLoadingImplCopyWithImpl(
-      _$NotLoadingImpl _value, $Res Function(_$NotLoadingImpl) _then)
+      _$NotLoadingImpl<Key> _value, $Res Function(_$NotLoadingImpl<Key>) _then)
       : super(_value, _then);
 
   /// Create a copy of LoadState
@@ -106,7 +107,7 @@ class __$$NotLoadingImplCopyWithImpl<$Res>
   $Res call({
     Object? endOfPaginationReached = null,
   }) {
-    return _then(_$NotLoadingImpl(
+    return _then(_$NotLoadingImpl<Key>(
       endOfPaginationReached: null == endOfPaginationReached
           ? _value.endOfPaginationReached
           : endOfPaginationReached // ignore: cast_nullable_to_non_nullable
@@ -117,7 +118,7 @@ class __$$NotLoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NotLoadingImpl implements NotLoading {
+class _$NotLoadingImpl<Key> implements NotLoading<Key> {
   const _$NotLoadingImpl({required this.endOfPaginationReached});
 
   @override
@@ -125,14 +126,14 @@ class _$NotLoadingImpl implements NotLoading {
 
   @override
   String toString() {
-    return 'LoadState.notLoading(endOfPaginationReached: $endOfPaginationReached)';
+    return 'LoadState<$Key>.notLoading(endOfPaginationReached: $endOfPaginationReached)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NotLoadingImpl &&
+            other is _$NotLoadingImpl<Key> &&
             (identical(other.endOfPaginationReached, endOfPaginationReached) ||
                 other.endOfPaginationReached == endOfPaginationReached));
   }
@@ -145,15 +146,16 @@ class _$NotLoadingImpl implements NotLoading {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$NotLoadingImplCopyWith<_$NotLoadingImpl> get copyWith =>
-      __$$NotLoadingImplCopyWithImpl<_$NotLoadingImpl>(this, _$identity);
+  _$$NotLoadingImplCopyWith<Key, _$NotLoadingImpl<Key>> get copyWith =>
+      __$$NotLoadingImplCopyWithImpl<Key, _$NotLoadingImpl<Key>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool endOfPaginationReached) notLoading,
     required TResult Function() loading,
-    required TResult Function(Object? error) error,
+    required TResult Function(Key? key, Object? error) error,
   }) {
     return notLoading(endOfPaginationReached);
   }
@@ -163,7 +165,7 @@ class _$NotLoadingImpl implements NotLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool endOfPaginationReached)? notLoading,
     TResult? Function()? loading,
-    TResult? Function(Object? error)? error,
+    TResult? Function(Key? key, Object? error)? error,
   }) {
     return notLoading?.call(endOfPaginationReached);
   }
@@ -173,7 +175,7 @@ class _$NotLoadingImpl implements NotLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool endOfPaginationReached)? notLoading,
     TResult Function()? loading,
-    TResult Function(Object? error)? error,
+    TResult Function(Key? key, Object? error)? error,
     required TResult orElse(),
   }) {
     if (notLoading != null) {
@@ -185,9 +187,9 @@ class _$NotLoadingImpl implements NotLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotLoading value) notLoading,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
+    required TResult Function(NotLoading<Key> value) notLoading,
+    required TResult Function(Loading<Key> value) loading,
+    required TResult Function(Error<Key> value) error,
   }) {
     return notLoading(this);
   }
@@ -195,9 +197,9 @@ class _$NotLoadingImpl implements NotLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotLoading value)? notLoading,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Error value)? error,
+    TResult? Function(NotLoading<Key> value)? notLoading,
+    TResult? Function(Loading<Key> value)? loading,
+    TResult? Function(Error<Key> value)? error,
   }) {
     return notLoading?.call(this);
   }
@@ -205,9 +207,9 @@ class _$NotLoadingImpl implements NotLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotLoading value)? notLoading,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
+    TResult Function(NotLoading<Key> value)? notLoading,
+    TResult Function(Loading<Key> value)? loading,
+    TResult Function(Error<Key> value)? error,
     required TResult orElse(),
   }) {
     if (notLoading != null) {
@@ -217,32 +219,32 @@ class _$NotLoadingImpl implements NotLoading {
   }
 }
 
-abstract class NotLoading implements LoadState {
+abstract class NotLoading<Key> implements LoadState<Key> {
   const factory NotLoading({required final bool endOfPaginationReached}) =
-      _$NotLoadingImpl;
+      _$NotLoadingImpl<Key>;
 
   bool get endOfPaginationReached;
 
   /// Create a copy of LoadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$NotLoadingImplCopyWith<_$NotLoadingImpl> get copyWith =>
+  _$$NotLoadingImplCopyWith<Key, _$NotLoadingImpl<Key>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
+abstract class _$$LoadingImplCopyWith<Key, $Res> {
   factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+          _$LoadingImpl<Key> value, $Res Function(_$LoadingImpl<Key>) then) =
+      __$$LoadingImplCopyWithImpl<Key, $Res>;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LoadStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
+class __$$LoadingImplCopyWithImpl<Key, $Res>
+    extends _$LoadStateCopyWithImpl<Key, $Res, _$LoadingImpl<Key>>
+    implements _$$LoadingImplCopyWith<Key, $Res> {
   __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+      _$LoadingImpl<Key> _value, $Res Function(_$LoadingImpl<Key>) _then)
       : super(_value, _then);
 
   /// Create a copy of LoadState
@@ -251,18 +253,18 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements Loading {
+class _$LoadingImpl<Key> implements Loading<Key> {
   const _$LoadingImpl();
 
   @override
   String toString() {
-    return 'LoadState.loading()';
+    return 'LoadState<$Key>.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl<Key>);
   }
 
   @override
@@ -273,7 +275,7 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(bool endOfPaginationReached) notLoading,
     required TResult Function() loading,
-    required TResult Function(Object? error) error,
+    required TResult Function(Key? key, Object? error) error,
   }) {
     return loading();
   }
@@ -283,7 +285,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool endOfPaginationReached)? notLoading,
     TResult? Function()? loading,
-    TResult? Function(Object? error)? error,
+    TResult? Function(Key? key, Object? error)? error,
   }) {
     return loading?.call();
   }
@@ -293,7 +295,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool endOfPaginationReached)? notLoading,
     TResult Function()? loading,
-    TResult Function(Object? error)? error,
+    TResult Function(Key? key, Object? error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -305,9 +307,9 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotLoading value) notLoading,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
+    required TResult Function(NotLoading<Key> value) notLoading,
+    required TResult Function(Loading<Key> value) loading,
+    required TResult Function(Error<Key> value) error,
   }) {
     return loading(this);
   }
@@ -315,9 +317,9 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotLoading value)? notLoading,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Error value)? error,
+    TResult? Function(NotLoading<Key> value)? notLoading,
+    TResult? Function(Loading<Key> value)? loading,
+    TResult? Function(Error<Key> value)? error,
   }) {
     return loading?.call(this);
   }
@@ -325,9 +327,9 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotLoading value)? notLoading,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
+    TResult Function(NotLoading<Key> value)? notLoading,
+    TResult Function(Loading<Key> value)? loading,
+    TResult Function(Error<Key> value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -337,25 +339,25 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements LoadState {
-  const factory Loading() = _$LoadingImpl;
+abstract class Loading<Key> implements LoadState<Key> {
+  const factory Loading() = _$LoadingImpl<Key>;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
+abstract class _$$ErrorImplCopyWith<Key, $Res> {
   factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+          _$ErrorImpl<Key> value, $Res Function(_$ErrorImpl<Key>) then) =
+      __$$ErrorImplCopyWithImpl<Key, $Res>;
   @useResult
-  $Res call({Object? error});
+  $Res call({Key? key, Object? error});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$LoadStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
+class __$$ErrorImplCopyWithImpl<Key, $Res>
+    extends _$LoadStateCopyWithImpl<Key, $Res, _$ErrorImpl<Key>>
+    implements _$$ErrorImplCopyWith<Key, $Res> {
   __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+      _$ErrorImpl<Key> _value, $Res Function(_$ErrorImpl<Key>) _then)
       : super(_value, _then);
 
   /// Create a copy of LoadState
@@ -363,55 +365,65 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? key = freezed,
     Object? error = freezed,
   }) {
-    return _then(_$ErrorImpl(
-      freezed == error ? _value.error : error,
+    return _then(_$ErrorImpl<Key>(
+      key: freezed == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as Key?,
+      error: freezed == error ? _value.error : error,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ErrorImpl implements Error {
-  const _$ErrorImpl([this.error]);
+class _$ErrorImpl<Key> implements Error<Key> {
+  const _$ErrorImpl({this.key, this.error});
 
+  @override
+  final Key? key;
   @override
   final Object? error;
 
   @override
   String toString() {
-    return 'LoadState.error(error: $error)';
+    return 'LoadState<$Key>.error(key: $key, error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$ErrorImpl<Key> &&
+            const DeepCollectionEquality().equals(other.key, key) &&
             const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(key),
+      const DeepCollectionEquality().hash(error));
 
   /// Create a copy of LoadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  _$$ErrorImplCopyWith<Key, _$ErrorImpl<Key>> get copyWith =>
+      __$$ErrorImplCopyWithImpl<Key, _$ErrorImpl<Key>>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool endOfPaginationReached) notLoading,
     required TResult Function() loading,
-    required TResult Function(Object? error) error,
+    required TResult Function(Key? key, Object? error) error,
   }) {
-    return error(this.error);
+    return error(key, this.error);
   }
 
   @override
@@ -419,9 +431,9 @@ class _$ErrorImpl implements Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool endOfPaginationReached)? notLoading,
     TResult? Function()? loading,
-    TResult? Function(Object? error)? error,
+    TResult? Function(Key? key, Object? error)? error,
   }) {
-    return error?.call(this.error);
+    return error?.call(key, this.error);
   }
 
   @override
@@ -429,11 +441,11 @@ class _$ErrorImpl implements Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool endOfPaginationReached)? notLoading,
     TResult Function()? loading,
-    TResult Function(Object? error)? error,
+    TResult Function(Key? key, Object? error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(this.error);
+      return error(key, this.error);
     }
     return orElse();
   }
@@ -441,9 +453,9 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(NotLoading value) notLoading,
-    required TResult Function(Loading value) loading,
-    required TResult Function(Error value) error,
+    required TResult Function(NotLoading<Key> value) notLoading,
+    required TResult Function(Loading<Key> value) loading,
+    required TResult Function(Error<Key> value) error,
   }) {
     return error(this);
   }
@@ -451,9 +463,9 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(NotLoading value)? notLoading,
-    TResult? Function(Loading value)? loading,
-    TResult? Function(Error value)? error,
+    TResult? Function(NotLoading<Key> value)? notLoading,
+    TResult? Function(Loading<Key> value)? loading,
+    TResult? Function(Error<Key> value)? error,
   }) {
     return error?.call(this);
   }
@@ -461,9 +473,9 @@ class _$ErrorImpl implements Error {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(NotLoading value)? notLoading,
-    TResult Function(Loading value)? loading,
-    TResult Function(Error value)? error,
+    TResult Function(NotLoading<Key> value)? notLoading,
+    TResult Function(Loading<Key> value)? loading,
+    TResult Function(Error<Key> value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -473,14 +485,15 @@ class _$ErrorImpl implements Error {
   }
 }
 
-abstract class Error implements LoadState {
-  const factory Error([final Object? error]) = _$ErrorImpl;
+abstract class Error<Key> implements LoadState<Key> {
+  const factory Error({final Key? key, final Object? error}) = _$ErrorImpl<Key>;
 
+  Key? get key;
   Object? get error;
 
   /// Create a copy of LoadState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$ErrorImplCopyWith<Key, _$ErrorImpl<Key>> get copyWith =>
       throw _privateConstructorUsedError;
 }

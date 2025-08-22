@@ -21,13 +21,13 @@ mixin _$PagingState<Key, Value> {
       throw _privateConstructorUsedError;
 
   /// Load state of the initial page.
-  LoadState get refreshLoadState => throw _privateConstructorUsedError;
+  LoadState<dynamic> get refreshLoadState => throw _privateConstructorUsedError;
 
   /// Load state of the previous page.
-  LoadState get prependLoadState => throw _privateConstructorUsedError;
+  LoadState<dynamic> get prependLoadState => throw _privateConstructorUsedError;
 
   /// Load state of the next page.
-  LoadState get appendLoadState => throw _privateConstructorUsedError;
+  LoadState<dynamic> get appendLoadState => throw _privateConstructorUsedError;
 
   /// Create a copy of PagingState
   /// with the given fields replaced by the non-null parameter values.
@@ -44,13 +44,13 @@ abstract class $PagingStateCopyWith<Key, Value, $Res> {
   @useResult
   $Res call(
       {PagingList<LoadResultPage<Key, Value>> pages,
-      LoadState refreshLoadState,
-      LoadState prependLoadState,
-      LoadState appendLoadState});
+      LoadState<dynamic> refreshLoadState,
+      LoadState<dynamic> prependLoadState,
+      LoadState<dynamic> appendLoadState});
 
-  $LoadStateCopyWith<$Res> get refreshLoadState;
-  $LoadStateCopyWith<$Res> get prependLoadState;
-  $LoadStateCopyWith<$Res> get appendLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get refreshLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get prependLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get appendLoadState;
 }
 
 /// @nodoc
@@ -82,15 +82,15 @@ class _$PagingStateCopyWithImpl<Key, Value, $Res,
       refreshLoadState: null == refreshLoadState
           ? _value.refreshLoadState
           : refreshLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
       prependLoadState: null == prependLoadState
           ? _value.prependLoadState
           : prependLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
       appendLoadState: null == appendLoadState
           ? _value.appendLoadState
           : appendLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
     ) as $Val);
   }
 
@@ -98,8 +98,8 @@ class _$PagingStateCopyWithImpl<Key, Value, $Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LoadStateCopyWith<$Res> get refreshLoadState {
-    return $LoadStateCopyWith<$Res>(_value.refreshLoadState, (value) {
+  $LoadStateCopyWith<dynamic, $Res> get refreshLoadState {
+    return $LoadStateCopyWith<dynamic, $Res>(_value.refreshLoadState, (value) {
       return _then(_value.copyWith(refreshLoadState: value) as $Val);
     });
   }
@@ -108,8 +108,8 @@ class _$PagingStateCopyWithImpl<Key, Value, $Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LoadStateCopyWith<$Res> get prependLoadState {
-    return $LoadStateCopyWith<$Res>(_value.prependLoadState, (value) {
+  $LoadStateCopyWith<dynamic, $Res> get prependLoadState {
+    return $LoadStateCopyWith<dynamic, $Res>(_value.prependLoadState, (value) {
       return _then(_value.copyWith(prependLoadState: value) as $Val);
     });
   }
@@ -118,8 +118,8 @@ class _$PagingStateCopyWithImpl<Key, Value, $Res,
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $LoadStateCopyWith<$Res> get appendLoadState {
-    return $LoadStateCopyWith<$Res>(_value.appendLoadState, (value) {
+  $LoadStateCopyWith<dynamic, $Res> get appendLoadState {
+    return $LoadStateCopyWith<dynamic, $Res>(_value.appendLoadState, (value) {
       return _then(_value.copyWith(appendLoadState: value) as $Val);
     });
   }
@@ -135,16 +135,16 @@ abstract class _$$PagingStateImplCopyWith<Key, Value, $Res>
   @useResult
   $Res call(
       {PagingList<LoadResultPage<Key, Value>> pages,
-      LoadState refreshLoadState,
-      LoadState prependLoadState,
-      LoadState appendLoadState});
+      LoadState<dynamic> refreshLoadState,
+      LoadState<dynamic> prependLoadState,
+      LoadState<dynamic> appendLoadState});
 
   @override
-  $LoadStateCopyWith<$Res> get refreshLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get refreshLoadState;
   @override
-  $LoadStateCopyWith<$Res> get prependLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get prependLoadState;
   @override
-  $LoadStateCopyWith<$Res> get appendLoadState;
+  $LoadStateCopyWith<dynamic, $Res> get appendLoadState;
 }
 
 /// @nodoc
@@ -174,15 +174,15 @@ class __$$PagingStateImplCopyWithImpl<Key, Value, $Res>
       refreshLoadState: null == refreshLoadState
           ? _value.refreshLoadState
           : refreshLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
       prependLoadState: null == prependLoadState
           ? _value.prependLoadState
           : prependLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
       appendLoadState: null == appendLoadState
           ? _value.appendLoadState
           : appendLoadState // ignore: cast_nullable_to_non_nullable
-              as LoadState,
+              as LoadState<dynamic>,
     ));
   }
 }
@@ -204,17 +204,17 @@ class _$PagingStateImpl<Key, Value> implements _PagingState<Key, Value> {
   /// Load state of the initial page.
   @override
   @JsonKey()
-  final LoadState refreshLoadState;
+  final LoadState<dynamic> refreshLoadState;
 
   /// Load state of the previous page.
   @override
   @JsonKey()
-  final LoadState prependLoadState;
+  final LoadState<dynamic> prependLoadState;
 
   /// Load state of the next page.
   @override
   @JsonKey()
-  final LoadState appendLoadState;
+  final LoadState<dynamic> appendLoadState;
 
   @override
   String toString() {
@@ -255,10 +255,11 @@ class _$PagingStateImpl<Key, Value> implements _PagingState<Key, Value> {
 
 abstract class _PagingState<Key, Value> implements PagingState<Key, Value> {
   const factory _PagingState(
-      {final PagingList<LoadResultPage<Key, Value>> pages,
-      final LoadState refreshLoadState,
-      final LoadState prependLoadState,
-      final LoadState appendLoadState}) = _$PagingStateImpl<Key, Value>;
+          {final PagingList<LoadResultPage<Key, Value>> pages,
+          final LoadState<dynamic> refreshLoadState,
+          final LoadState<dynamic> prependLoadState,
+          final LoadState<dynamic> appendLoadState}) =
+      _$PagingStateImpl<Key, Value>;
 
   /// List with all the pages loaded so far.
   @override
@@ -266,15 +267,15 @@ abstract class _PagingState<Key, Value> implements PagingState<Key, Value> {
 
   /// Load state of the initial page.
   @override
-  LoadState get refreshLoadState;
+  LoadState<dynamic> get refreshLoadState;
 
   /// Load state of the previous page.
   @override
-  LoadState get prependLoadState;
+  LoadState<dynamic> get prependLoadState;
 
   /// Load state of the next page.
   @override
-  LoadState get appendLoadState;
+  LoadState<dynamic> get appendLoadState;
 
   /// Create a copy of PagingState
   /// with the given fields replaced by the non-null parameter values.

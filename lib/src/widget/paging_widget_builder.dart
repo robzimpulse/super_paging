@@ -77,7 +77,7 @@ class _PagingWidgetBuilderState<Key, Value>
         // The refresh state is the state of the first page.
         final refreshState = state.refreshLoadState;
         return refreshState.when(
-          error: (error) => widget.errorBuilder.call(context, error),
+          error: (key, error) => widget.errorBuilder.call(context, key, error),
           loading: () {
             // We are only going to show the loading widget if there are no
             // pages.

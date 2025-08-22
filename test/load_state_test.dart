@@ -38,7 +38,7 @@ void main() {
     });
 
     test('Error initializes correctly with an error', () {
-      var loadState = LoadState.error(Exception('An error occurred'));
+      var loadState = LoadState.error(error: Exception('An error occurred'));
 
       expect(loadState, isA<Error>());
 

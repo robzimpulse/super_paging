@@ -18,7 +18,7 @@ part 'load_state.freezed.dart';
 ///  * [LoadType], which represents the type of load operation that generated
 ///    this [LoadState].
 @freezed
-sealed class LoadState with _$LoadState {
+sealed class LoadState<Key> with _$LoadState<Key> {
   /// Indicates the [PagingData] is not currently loading, and no error
   /// currently observed.
   ///
@@ -43,5 +43,5 @@ sealed class LoadState with _$LoadState {
   ///
   ///  * [Pager.retry], which can be called to retry the load operation
   ///  that generated this error state.
-  const factory LoadState.error([Object? error]) = Error;
+  const factory LoadState.error({Key? key, Object? error}) = Error;
 }

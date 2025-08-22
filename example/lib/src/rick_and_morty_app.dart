@@ -67,8 +67,8 @@ class _RickAndMortyPageListState extends State<RickAndMortyPageList> {
             child: Text('No characters found'),
           );
         },
-        errorBuilder: (BuildContext context, Object? error) {
-          return Center(child: Text('$error'));
+        errorBuilder: (context, key, error) {
+          return Center(child: Text('$error - $key'));
         },
         loadingBuilder: (BuildContext context) {
           return const Center(
@@ -118,7 +118,7 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
           pager: rickAndMortyPager,
           headerBuilder: (context) => const SizedBox(height: 8),
           footerBuilder: (context) => const SizedBox(height: 8),
-          itemBuilder: (BuildContext context, int index) {
+          itemBuilder: (context, index) {
             final item = rickAndMortyPager.items.elementAt(index);
             final page = rickAndMortyPager.page(index);
 
@@ -157,12 +157,12 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
               ),
             );
           },
-          emptyBuilder: (BuildContext context) {
+          emptyBuilder: (context) {
             return const Center(
               child: Text('No characters found'),
             );
           },
-          errorBuilder: (BuildContext context, Object? error) {
+          errorBuilder: (context, key, error) {
             return Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -170,13 +170,13 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
                   Text('$error'),
                   OutlinedButton(
                     onPressed: () => rickAndMortyPager.retry(),
-                    child: const Text('Retry'),
+                    child: Text('Retry page $key'),
                   ),
                 ],
               ),
             );
           },
-          loadingBuilder: (BuildContext context) {
+          loadingBuilder: (context) {
             return const Center(
               child: CircularProgressIndicator.adaptive(),
             );

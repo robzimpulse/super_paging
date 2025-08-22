@@ -129,7 +129,7 @@ class PageFetcher<Key, Value> extends ValueNotifier<PagingState<Key, Value>> {
             );
 
             // Update value with the error.
-            value = value.setError(LoadType.refresh, it.error);
+            value = value.setError(LoadType.refresh, initialKey, it.error);
           },
         );
       },
@@ -202,7 +202,7 @@ class PageFetcher<Key, Value> extends ValueNotifier<PagingState<Key, Value>> {
             );
 
             // Update value with the error.
-            value = value.setError(loadType, it.error);
+            value = value.setError(loadType, loadKey, it.error);
           },
         );
 
@@ -473,11 +473,21 @@ extension<Key, Value> on PagingState<Key, Value> {
   }
 
   /// Returns the updated [PagingState] after setting the [error] state.
-  PagingState<Key, Value> setError(LoadType loadType, [Object? error]) {
+  PagingState<Key, Value> setError(
+    LoadType loadType, [
+    Key? key,
+    Object? error,
+  ]) {
     return switch (loadType) {
-      LoadType.refresh => copyWith(refreshLoadState: LoadState.error(error)),
-      LoadType.prepend => copyWith(prependLoadState: LoadState.error(error)),
-      LoadType.append => copyWith(appendLoadState: LoadState.error(error)),
+      LoadType.refresh => copyWith(
+          refreshLoadState: LoadState.error(key: key, error: error),
+        ),
+      LoadType.prepend => copyWith(
+          prependLoadState: LoadState.error(key: key, error: error),
+        ),
+      LoadType.append => copyWith(
+          appendLoadState: LoadState.error(key: key, error: error),
+        ),
     };
   }
 }
