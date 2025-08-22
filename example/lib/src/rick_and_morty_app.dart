@@ -135,9 +135,12 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
               child: Column(
                 children: [
                   Expanded(
-                      child: Center(
-                          child: CircleAvatar(
-                              backgroundImage: NetworkImage(item.image)))),
+                    child: Center(
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(item.image),
+                      ),
+                    ),
+                  ),
                   Text(
                     item.name,
                     style: Theme.of(context).textTheme.labelSmall,
