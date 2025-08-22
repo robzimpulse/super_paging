@@ -112,41 +112,65 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
           ),
         ],
       ),
-      body: PagingGridView.count(
-        pager: rickAndMortyPager,
-        itemBuilder: (BuildContext context, int index) {
-          final item = rickAndMortyPager.items.elementAt(index);
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: PagingGridView.count(
+          pager: rickAndMortyPager,
+          itemBuilder: (BuildContext context, int index) {
+            final item = rickAndMortyPager.items.elementAt(index);
 
-          return Center(
-            key: ValueKey(item.id),
-            child: CircleAvatar(backgroundImage: NetworkImage(item.image)),
-          );
-        },
-        emptyBuilder: (BuildContext context) {
-          return const Center(
-            child: Text('No characters found'),
-          );
-        },
-        errorBuilder: (BuildContext context, Object? error) {
-          return Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('$error'),
-                OutlinedButton(
-                  onPressed: () => rickAndMortyPager.retry(),
-                  child: const Text('Retry'),
-                ),
-              ],
-            ),
-          );
-        },
-        loadingBuilder: (BuildContext context) {
-          return const Center(
-            child: CircularProgressIndicator.adaptive(),
-          );
-        },
-        crossAxisCount: 3,
+            return Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(),
+              ),
+              child: Column(
+                children: [
+                  Expanded(child: Center(child: CircleAvatar(backgroundImage: NetworkImage(item.image)))),
+                  Text(
+                    item.name,
+                    style: Theme.of(context).textTheme.labelSmall,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    item.status,
+                    style: Theme.of(context).textTheme.labelSmall,
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+            );
+          },
+          emptyBuilder: (BuildContext context) {
+            return const Center(
+              child: Text('No characters found'),
+            );
+          },
+          errorBuilder: (BuildContext context, Object? error) {
+            return Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('$error'),
+                  OutlinedButton(
+                    onPressed: () => rickAndMortyPager.retry(),
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            );
+          },
+          loadingBuilder: (BuildContext context) {
+            return const Center(
+              child: CircularProgressIndicator.adaptive(),
+            );
+          },
+          crossAxisCount: 3,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+        ),
       ),
     );
   }
