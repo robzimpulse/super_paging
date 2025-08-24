@@ -10,7 +10,6 @@ const initialState = PagingState<int, String>(
     LoadResultPage(
       items: ['Item 1', 'Item 2'],
       prevKey: null,
-      currKey: 1,
       nextKey: 2,
     ),
   ]),

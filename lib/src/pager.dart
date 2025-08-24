@@ -176,22 +176,6 @@ extension PagerExtension<Key, Value> on Pager<Key, Value> {
   /// List with all the pages loaded so far.
   PagingList<LoadResultPage<Key, Value>> get pages => value.pages;
 
-  /// [Key] of pages based on index [Value] from [items]
-  Key? page(int itemIndex) {
-    if (itemIndex < 0) return null;
-
-    var index = itemIndex;
-    for (final page in pages) {
-      if (index <= page.items.length) {
-        return page.currKey;
-      } else {
-        index -= page.items.length;
-      }
-    }
-
-    return null;
-  }
-
   /// Load state of the initial page.
   LoadState get refreshLoadState => value.refreshLoadState;
 

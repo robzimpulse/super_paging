@@ -658,25 +658,20 @@ abstract class Prepend<Key> implements LoadParams<Key> {
 mixin _$LoadResult<Key, Value> {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)
+    required TResult Function(List<Value> items, Key? prevKey, Key? nextKey)
         page,
     required TResult Function(Object? error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult? Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult? Function(Object? error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult Function(Object? error)? error,
     required TResult orElse(),
   }) =>
@@ -730,7 +725,7 @@ abstract class _$$LoadResultPageImplCopyWith<Key, Value, $Res> {
           $Res Function(_$LoadResultPageImpl<Key, Value>) then) =
       __$$LoadResultPageImplCopyWithImpl<Key, Value, $Res>;
   @useResult
-  $Res call({List<Value> items, Key currKey, Key? prevKey, Key? nextKey});
+  $Res call({List<Value> items, Key? prevKey, Key? nextKey});
 }
 
 /// @nodoc
@@ -748,7 +743,6 @@ class __$$LoadResultPageImplCopyWithImpl<Key, Value, $Res>
   @override
   $Res call({
     Object? items = null,
-    Object? currKey = freezed,
     Object? prevKey = freezed,
     Object? nextKey = freezed,
   }) {
@@ -757,10 +751,6 @@ class __$$LoadResultPageImplCopyWithImpl<Key, Value, $Res>
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<Value>,
-      currKey: freezed == currKey
-          ? _value.currKey
-          : currKey // ignore: cast_nullable_to_non_nullable
-              as Key,
       prevKey: freezed == prevKey
           ? _value.prevKey
           : prevKey // ignore: cast_nullable_to_non_nullable
@@ -779,10 +769,7 @@ class _$LoadResultPageImpl<Key, Value>
     with DiagnosticableTreeMixin
     implements LoadResultPage<Key, Value> {
   const _$LoadResultPageImpl(
-      {required final List<Value> items,
-      required this.currKey,
-      this.prevKey,
-      this.nextKey})
+      {required final List<Value> items, this.prevKey, this.nextKey})
       : _items = items;
 
   /// Loaded items.
@@ -796,10 +783,6 @@ class _$LoadResultPageImpl<Key, Value>
     return EqualUnmodifiableListView(_items);
   }
 
-  /// [Key] for current page.
-  @override
-  final Key currKey;
-
   /// [Key] for previous page if more items can be loaded in that direction,
   /// `null` otherwise.
   @override
@@ -812,7 +795,7 @@ class _$LoadResultPageImpl<Key, Value>
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoadResult<$Key, $Value>.page(items: $items, currKey: $currKey, prevKey: $prevKey, nextKey: $nextKey)';
+    return 'LoadResult<$Key, $Value>.page(items: $items, prevKey: $prevKey, nextKey: $nextKey)';
   }
 
   @override
@@ -821,7 +804,6 @@ class _$LoadResultPageImpl<Key, Value>
     properties
       ..add(DiagnosticsProperty('type', 'LoadResult<$Key, $Value>.page'))
       ..add(DiagnosticsProperty('items', items))
-      ..add(DiagnosticsProperty('currKey', currKey))
       ..add(DiagnosticsProperty('prevKey', prevKey))
       ..add(DiagnosticsProperty('nextKey', nextKey));
   }
@@ -832,7 +814,6 @@ class _$LoadResultPageImpl<Key, Value>
         (other.runtimeType == runtimeType &&
             other is _$LoadResultPageImpl<Key, Value> &&
             const DeepCollectionEquality().equals(other._items, _items) &&
-            const DeepCollectionEquality().equals(other.currKey, currKey) &&
             const DeepCollectionEquality().equals(other.prevKey, prevKey) &&
             const DeepCollectionEquality().equals(other.nextKey, nextKey));
   }
@@ -841,7 +822,6 @@ class _$LoadResultPageImpl<Key, Value>
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_items),
-      const DeepCollectionEquality().hash(currKey),
       const DeepCollectionEquality().hash(prevKey),
       const DeepCollectionEquality().hash(nextKey));
 
@@ -857,36 +837,31 @@ class _$LoadResultPageImpl<Key, Value>
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)
+    required TResult Function(List<Value> items, Key? prevKey, Key? nextKey)
         page,
     required TResult Function(Object? error) error,
   }) {
-    return page(items, currKey, prevKey, nextKey);
+    return page(items, prevKey, nextKey);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult? Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult? Function(Object? error)? error,
   }) {
-    return page?.call(items, currKey, prevKey, nextKey);
+    return page?.call(items, prevKey, nextKey);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult Function(Object? error)? error,
     required TResult orElse(),
   }) {
     if (page != null) {
-      return page(items, currKey, prevKey, nextKey);
+      return page(items, prevKey, nextKey);
     }
     return orElse();
   }
@@ -926,15 +901,11 @@ class _$LoadResultPageImpl<Key, Value>
 abstract class LoadResultPage<Key, Value> implements LoadResult<Key, Value> {
   const factory LoadResultPage(
       {required final List<Value> items,
-      required final Key currKey,
       final Key? prevKey,
       final Key? nextKey}) = _$LoadResultPageImpl<Key, Value>;
 
   /// Loaded items.
   List<Value> get items;
-
-  /// [Key] for current page.
-  Key get currKey;
 
   /// [Key] for previous page if more items can be loaded in that direction,
   /// `null` otherwise.
@@ -1030,8 +1001,7 @@ class _$LoadResultErrorImpl<Key, Value>
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)
+    required TResult Function(List<Value> items, Key? prevKey, Key? nextKey)
         page,
     required TResult Function(Object? error) error,
   }) {
@@ -1041,9 +1011,7 @@ class _$LoadResultErrorImpl<Key, Value>
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult? Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult? Function(Object? error)? error,
   }) {
     return error?.call(this.error);
@@ -1052,9 +1020,7 @@ class _$LoadResultErrorImpl<Key, Value>
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            List<Value> items, Key currKey, Key? prevKey, Key? nextKey)?
-        page,
+    TResult Function(List<Value> items, Key? prevKey, Key? nextKey)? page,
     TResult Function(Object? error)? error,
     required TResult orElse(),
   }) {

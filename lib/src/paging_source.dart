@@ -131,9 +131,6 @@ sealed class LoadResult<Key, Value> with _$LoadResult<Key, Value> {
     /// Loaded items.
     required List<Value> items,
 
-    /// [Key] for current page.
-    required Key currKey,
-
     /// [Key] for previous page if more items can be loaded in that direction,
     /// `null` otherwise.
     Key? prevKey,

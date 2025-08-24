@@ -38,7 +38,6 @@ class RickAndMortySource extends PagingSource<int, RickAndMortyCharacter> {
 
       return LoadResult.page(
         items: data.results,
-        currKey: page,
         nextKey: nextPage,
         prevKey: prevPage,
       );

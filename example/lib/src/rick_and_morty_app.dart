@@ -120,17 +120,11 @@ class _RickAndMortyGridPageState extends State<RickAndMortyGridPage> {
           footerBuilder: (context) => const SizedBox(height: 8),
           itemBuilder: (BuildContext context, int index) {
             final item = rickAndMortyPager.items.elementAt(index);
-            final page = rickAndMortyPager.page(index);
 
             return Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(),
-                color: page != null
-                    ? page.isOdd
-                        ? Colors.grey
-                        : Colors.blueGrey
-                    : null,
               ),
               child: Column(
                 children: [

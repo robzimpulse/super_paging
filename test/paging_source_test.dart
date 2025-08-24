@@ -46,7 +46,6 @@ void main() {
     test('LoadResult.page initializes correctly', () {
       var loadResult = const LoadResult<String, String>.page(
         items: ['Item 1', 'Item 2'],
-        currKey: 'currKey',
         prevKey: 'prevKey',
         nextKey: 'nextKey',
       );
@@ -57,7 +56,6 @@ void main() {
       loadResult = loadResult as LoadResultPage<String, String>;
       expect(loadResult.items, ['Item 1', 'Item 2']);
       expect(loadResult.prevKey, 'prevKey');
-      expect(loadResult.currKey, 'currKey');
       expect(loadResult.nextKey, 'nextKey');
     });
 
@@ -75,7 +73,6 @@ void main() {
   test('LoadResult.page with null prevKey and nextKey', () {
     var loadResult = const LoadResult<String, String>.page(
       items: ['Item 1', 'Item 2'],
-      currKey: 'currKey',
       prevKey: null,
       nextKey: null,
     );
@@ -91,7 +88,6 @@ void main() {
   test('LoadResult.page with an empty items list', () {
     var loadResult = const LoadResult<String, String>.page(
       items: [],
-      currKey: 'currKey',
       prevKey: 'prevKey',
       nextKey: 'nextKey',
     );
