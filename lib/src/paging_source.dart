@@ -8,6 +8,9 @@ import 'package:super_paging/src/preconditions.dart';
 
 part 'paging_source.freezed.dart';
 
+typedef PagingSourceLoader<Key, Value> = Future<LoadResult<Key, Value>>
+    Function(LoadParams<Key> params);
+
 /// Base class for an abstraction of pageable static data from some source,
 /// where loading pages of data is typically an expensive operation. Some
 /// examples of common [PagingSource]s might be from network or from a database.
@@ -72,6 +75,23 @@ abstract mixin class PagingSource<Key, Value> {
   /// Implement this method to trigger your async load (e.g. from database or
   /// network).
   Future<LoadResult<Key, Value>> load(LoadParams<Key> params);
+
+  factory PagingSource.builder({
+    required PagingSourceLoader<Key, Value> loader,
+  }) {
+    return DefaultPagingSource(loader: loader);
+  }
+}
+
+class DefaultPagingSource<Key, Value> extends PagingSource<Key, Value> {
+  DefaultPagingSource({required this.loader});
+
+  final PagingSourceLoader<Key, Value> loader;
+
+  @override
+  Future<LoadResult<Key, Value>> load(LoadParams<Key> params) {
+    return loader.call(params);
+  }
 }
 
 /// Params for a load request on a [PagingSource] from [PagingSource.load].
